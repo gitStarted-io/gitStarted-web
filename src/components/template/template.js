@@ -2,17 +2,21 @@ import React from 'react';
 import {Link} from 'react-router'
 import HttpService from '../../services/http-service'
 // import RenderReadMe from 'render-readme'
+import TemplateActions from '../../actions/template-actions'
+import TemplateStore from '../../stores/template-store'
 
 function getState() {
 	return {
-        id:12345,
-		title:'gitStarted-web',
-        author:'Jalsemgeest',
-        description:'awesome',
-        tags:['awesome', 'crazy', 'perfect'],
-        version:'1.0.1',
-        github:'https://github.com/gitStarted-io/gitStarted',
-        collaborators:[1,2,3]
+        template:TemplateStore.getCurrentTemplate(),
+        term:TemplateStore.getTemplateTerm()
+        // id:12345,
+        // title:'gitStarted-web',
+        // author:'Jalsemgeest',
+        // description:'awesome',
+        // tags:['awesome', 'crazy', 'perfect'],
+        // version:'1.0.1',
+        // github:'https://github.com/gitStarted-io/gitStarted',
+        // collaborators:[1,2,3]
 	}
 }
 
@@ -22,38 +26,46 @@ export default class Template extends React.Component {
         super(props);
 
         console.log("DASHBOARD CONSTRUCTOR");
-        this.state = {
-            version:'',
-            tags:[]
-        }
+        this.state = getState();
+        this.state.tags = this.state.tags || [];
+        this.state.term = this.state.term || "";
 
         this._onChange = this._onChange.bind(this);
     }
 
     componentDidMount() {
+        TemplateStore.addChangeListener(this._onChange);
+
   	    this.setState(getState());
         var self = this;
-        var promise = HttpService.get("https://raw.githubusercontent.com/substack/node-browserify/master/readme.markdown");
+        console.log("DO GET REQUEST FOR CONTENT");
+        TemplateActions.getTemplate(this.props.params.templateName);
 
-        promise.then((response) => {
-            // self.setState({description:response});
-            HttpService.post("https://api.github.com/markdown",
-                {
-                    text:response.data,
-                    mode:'markdown'
-                })
-                .then((response) => {
-                    self.setState({description:response.data, isMarkdown: true});
-                    // console.log(response);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            // console.log(response.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+        // var promise = HttpService.get("https://raw.githubusercontent.com/substack/node-browserify/master/readme.markdown");
+        //
+        // promise.then((response) => {
+        //     // self.setState({description:response});
+        //     HttpService.post("https://api.github.com/markdown",
+        //         {
+        //             text:response.data,
+        //             mode:'markdown'
+        //         })
+        //         .then((response) => {
+        //             self.setState({description:response.data, isMarkdown: true});
+        //             // console.log(response);
+        //         })
+        //         .catch((err) => {
+        //             console.log(err);
+        //         });
+        //     // console.log(response.data);
+        // })
+        // .catch((err) => {
+        //     console.log(err);
+        // });
+    }
+
+    componentWillUnmount() {
+        TemplateStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {
@@ -64,22 +76,16 @@ export default class Template extends React.Component {
 
         return  <div className="template_container">
                     <div className="template_left">
-                        {
-                            ((self) => {
-                                if (!self.state.description || !self.state.isMarkdown) {
-                                    return <p className="template_title">{self.props.params.templateName}</p>;
-                                }
-                                return <div className="template_readme" dangerouslySetInnerHTML={{__html:self.state.description}}/>
-                            })(this)
-                        }
+                        <p className="template_title">{this.state.template.getTemplateName()}</p>;
+                        <div className="template_readme" dangerouslySetInnerHTML={{__html:this.state.template.getDescription()}}/>
                     </div>
                     <div className="template_right">
-                        <p className="template_author"><a href={"/user/"+this.state.author}>{this.state.author}</a></p>
-                        <p className="template_version">v{this.state.version}</p>
+                        <p className="template_author"><a href={"/user/"+this.state.template.getAuthor()}>{this.state.template.getAuthor()}</a></p>
+                        <p className="template_version">v{this.state.template.getVersion()}</p>
                         {
                             ((self) => {
-                                if (self.state.tags.length > 0) {
-                                    var tags = self.state.tags.map((tag) => {
+                                if (self.state.template.getTags().length > 0) {
+                                    var tags = self.state.template.getTags().map((tag) => {
                                        return <li key={tag}><a href={"/tag/"+tag}>{tag}</a></li>;
                                     });
                                     return  <ul className="template_tags">

@@ -28,6 +28,7 @@ nav.top_nav {
 	top:0;
 	left:0;
 	background-color:$gs-gray;
+	box-shadow: 0px 1px 5px 1px gray;
 
 	.search_bar_container {
 		height:40px;
@@ -84,6 +85,8 @@ nav.top_nav {
 		text-align:center;
 		line-height:40px;
 		font-size:30px;
+
+		font-family:$gs-logo-font;
 	}
 }
 
@@ -140,6 +143,7 @@ nav.top_nav {
 			margin-right:50px;
 			height:100%;
 			overflow-y:scroll;
+			padding-top:20px;
 		}
 
 		.template_readme::-webkit-scrollbar {
@@ -149,20 +153,20 @@ nav.top_nav {
 
 	.template_right {
 		width:300px;
-		background-color:$gs-background;
+		background-color:$gs-blue;
 
 		p.template_author {
 			display:block;
 			width:auto;
 			padding:0px 5px 5px;
 			margin:15px 15px 15px 15px;
-			border-bottom:1px solid gray;
+			border-bottom:1px solid $gs-red;
 
 			a {
-				color: $gs-font-color;
+				color: $gs-template-font-color;
 				text-decoration:none;
 				&:hover {
-					color:$gs-gray;
+					color:$gs-yellow;
 				}
 			}
 		}
@@ -170,24 +174,26 @@ nav.top_nav {
 		p.template_version {
 			display:block;
 			width:auto;
+			color:$gs-template-font-color;
 			padding:0px 5px 5px;
 			margin:0px 15px 15px 15px;
-			border-bottom:1px solid gray;
+			border-bottom:1px solid $gs-red;
 		}
 
 		ul.template_tags {
 			padding:0px 5px 5px;
 			margin:0px 15px 15px 15px;
-			border-bottom:1px solid gray;
+			border-bottom:1px solid $gs-red;
 			list-style:none;
 
 			li {
 				display:inline-block;
 				padding-right:3px;
+				color:$gs-template-font-color;
 
 				a {
 					text-decoration:none;
-					color: $gs-font-color;
+					color: $gs-template-font-color;
 
 					&:hover {
 						color:$gs-gray;
@@ -204,6 +210,16 @@ nav.top_nav {
 					content:'';
 				}
 			}
+
+			li:first-child {
+				&:before {
+					content:$gs-tags;
+					font-family:"FontAwesome", sans-serif;
+					padding-right:5px;
+				}
+			}
 		}
 	}
 }
+
+@import "./template/style";

@@ -1,7 +1,22 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Passion+One");
+
 // general
 $color-white: #ffffff;
 
-// GS colours
+// Font Families
+$gs-logo-font: "Passion One";
+
+// GS colours: http://paletton.com/#uid=70a0K0kmtw0cHNai7DJrrtVtYnD
 $gs-gray: #bbbbbb;
 $gs-background: #f3f3f3;
 $gs-font-color: #333333;
+$gs-template-font-color: #ffffff;
+$gs-blue: #3886AA;
+$gs-yellow: #FFAC4C;
+$gs-red: #FF724C;
+
+// Icons
+$gs-upvote:"\f164";
+$gs-downvote:"\f165";
+$gs-tags:"\f02c";
