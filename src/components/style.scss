@@ -10,9 +10,24 @@ h1, h2, h3, h4, h5, h6 {
 	padding:0;
 }
 
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration:none;
+		cursor:pointer;
+	}
+}
+
 body {
   background: #f3f3f3;
   font-weight: 200;
+}
+
+ul {
+	list-style:none;
+	padding:0;
+	margin:0;
 }
 
 .container {
@@ -29,6 +44,7 @@ nav.top_nav {
 	left:0;
 	background-color:$gs-gray;
 	box-shadow: 0px 1px 5px 1px gray;
+	z-index:1000;
 
 	.search_bar_container {
 		height:40px;
@@ -87,6 +103,78 @@ nav.top_nav {
 		font-size:30px;
 
 		font-family:$gs-logo-font;
+
+		a {
+			color: $gs-font-color;
+			text-decoration:none;
+			&:hover {
+				cursor:pointer;
+			}
+		}
+	}
+
+	.login {
+		position: absolute;
+		right: 20px;
+		top: 0;
+		height: 40px;
+		line-height: 40px;
+
+		a {
+			color: $gs-font-color;
+			height: 40px;
+			display: block;
+			width: 60px;
+			text-align: center;
+
+			&:hover {
+				text-shadow: 0px 0px 2px $color-white, 0px 0px 4px $color-white, 0px 0px 6px $color-white;
+			}
+		}
+
+		.user_button {
+			width: 150px;
+			height: 40px;
+			text-align: right;
+			position: relative;
+
+			p {
+				margin: 0px;
+				display: inline-block;
+			}
+
+			img {
+				height: 35px;
+			}
+
+			.dropdown {
+				background-color: $gs-gray;
+				display: none;
+				position: absolute;
+				top: 40px;
+				z-index: 900;
+				width:100%;
+				ul {
+					padding: 0px;
+
+					li {
+						border-bottom: 1px solid gray;
+						a {
+							width: 100%;
+
+							&:hover {
+								text-shadow: none;
+								background-color: $gs-background;
+							}
+						}
+					}
+				}
+			}
+
+			.dropdown.visible {
+				display: block;
+			}
+		}
 	}
 }
 
@@ -120,106 +208,5 @@ nav.top_nav {
 	display:block;
 }
 
-.template_container {
-	height:100%;
-	width:100%;
-	display:flex;
-
-	.template_left {
-		flex:1;
-		height:100%;
-		min-width:600px;
-		background-color:$color-white;
-
-		p.template_title {
-			display:block;
-			width:auto;
-			margin:20px 20px 0px 100px;
-			font-size:20px;
-		}
-
-		.template_readme {
-			margin-left:50px;
-			margin-right:50px;
-			height:100%;
-			overflow-y:scroll;
-			padding-top:20px;
-		}
-
-		.template_readme::-webkit-scrollbar {
-			display:none;
-		}
-	}
-
-	.template_right {
-		width:300px;
-		background-color:$gs-blue;
-
-		p.template_author {
-			display:block;
-			width:auto;
-			padding:0px 5px 5px;
-			margin:15px 15px 15px 15px;
-			border-bottom:1px solid $gs-red;
-
-			a {
-				color: $gs-template-font-color;
-				text-decoration:none;
-				&:hover {
-					color:$gs-yellow;
-				}
-			}
-		}
-
-		p.template_version {
-			display:block;
-			width:auto;
-			color:$gs-template-font-color;
-			padding:0px 5px 5px;
-			margin:0px 15px 15px 15px;
-			border-bottom:1px solid $gs-red;
-		}
-
-		ul.template_tags {
-			padding:0px 5px 5px;
-			margin:0px 15px 15px 15px;
-			border-bottom:1px solid $gs-red;
-			list-style:none;
-
-			li {
-				display:inline-block;
-				padding-right:3px;
-				color:$gs-template-font-color;
-
-				a {
-					text-decoration:none;
-					color: $gs-template-font-color;
-
-					&:hover {
-						color:$gs-gray;
-					}
-				}
-
-				&:after {
-					content:','
-				}
-			}
-
-			li:last-child {
-				&:after {
-					content:'';
-				}
-			}
-
-			li:first-child {
-				&:before {
-					content:$gs-tags;
-					font-family:"FontAwesome", sans-serif;
-					padding-right:5px;
-				}
-			}
-		}
-	}
-}
-
 @import "./template/style";
+@import "./user/style";

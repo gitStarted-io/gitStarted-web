@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom'
 // import MenuItem from './menu-item'
 import {browserHistory, Link} from 'react-router'
 import SearchActions from '../../actions/search-actions'
+import UserStore from '../../stores/user-store'
 
 function getState() {
     return {
         name: 'Jake',
-        search:''
+        search:'',
+        me:UserStore.getMe()
     }
 }
 
@@ -23,10 +25,19 @@ class Dashboard extends React.Component {
         this.focusSearch = this.focusSearch.bind(this);
         this.searchChange = this.searchChange.bind(this);
         this.submitSearch = this.submitSearch.bind(this);
+        this.goHome = this.goHome.bind(this);
         this._onChange = this._onChange.bind(this);
 
         this.state = getState();
 
+    }
+
+    componentDidMount() {
+        UserStore.addChangeListener(this._onChange);
+    }
+
+    componentWillUnmount() {
+        UserStore.removeChangeListener(this._onChange);
     }
 
     focusSearch() {
@@ -47,6 +58,11 @@ class Dashboard extends React.Component {
         }
     }
 
+    goHome(e) {
+        e.preventDefault();
+        browserHistory.push("/");
+    }
+
     _onChange() {
         this.setState(getState());
     }
@@ -58,7 +74,10 @@ class Dashboard extends React.Component {
                             <a className="search_icon" onClick={this.focusSearch}></a>
                             <input value={this.state.search} ref="template_search_field" className="search_bar" onChange={this.searchChange} onKeyPress={this.submitSearch} type = "text"/>
                         </div>
-                        <div className="nav_title">gitStarted</div>
+                        <div className="nav_title"><a onClick={this.goHome}>gitStarted</a></div>
+                        <div className="login">
+                            {this.state.me.getUserButton()}
+                        </div>
                     </nav>
                     <div className="content_container">
                         {this.props.children}

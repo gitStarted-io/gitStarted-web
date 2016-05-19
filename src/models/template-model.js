@@ -8,6 +8,7 @@ export default class TemplateModel extends BaseModel {
     constructor(template) {
         super();
 
+        this._templateId = template.templateId;
         this._templateName = template.templateName;
         this._description = template.description;
         this._author = template.author;
@@ -15,6 +16,10 @@ export default class TemplateModel extends BaseModel {
         this._downvotes = template.downvotes;
         this._tags = template.tags || [];
         this._version = template.version;
+    }
+
+    getTemplateId() {
+        return this._templateId;
     }
 
     getTemplateName() {

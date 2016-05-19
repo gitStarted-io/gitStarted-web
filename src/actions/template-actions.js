@@ -12,7 +12,7 @@ const ENDPOINTS = {
 }
 
 export default class TemplateActions {
-    static getTemplate(term) {
+    static getTemplate(term, callback) {
         
         var promise = HttpService.get(ENDPOINTS.GET_TEMPLATE + term);
         
@@ -23,6 +23,7 @@ export default class TemplateActions {
                     template: template,
                     templateName: term
                 });
+                callback(template.getTemplateId());
             }
         }, (error) => {
            console.log(error); 

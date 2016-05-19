@@ -11,6 +11,7 @@ import Dashboard from './dashboard/dashboard'
 import Home from './home/home'
 import Template from './template/template'
 import Search from './search/search'
+import User from './user/user'
 
 function loadSettings() {
 	// console.log("Awesome");
@@ -23,8 +24,9 @@ ReactDOM.render(
 				<IndexRoute component={Home}/>
 				<Route path="template/:templateName" component={Template}/>
 				<Route path="search/:term" component={Search} />
+				<Route path="user/:username" component={User} />
+				<Route path="login" component={Login} />
 			</Route>
-			<Route path="login" component={Login}/>
 		</Route>
 	</Router>, 
 	document.getElementById('app'));
