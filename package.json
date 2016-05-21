@@ -8,7 +8,10 @@
     "copy-dist": "cp ./src/index.html ./dist/ && cp -a ./src/assets/. ./dist/assets/",
     "build": "npm run clean && npm run copy-dist & webpack",
     "clean": "rm -rf dist && mkdir -p ./dist/assets",
-    "serve": "npm run clean && npm run copy-dist && webpack-dev-server --inline --history-api-fallback --content-base dist/"
+    "serve": "npm run clean && npm run copy-dist && webpack-dev-server --inline --history-api-fallback --content-base dist/",
+    "windows-clean": "rmdir .\\dist /s /q && md .\\dist\\assets",
+    "windows-copy-dist": "copy .\\src\\index.html .\\dist\\",
+    "windows-serve": "npm run windows-clean && npm run windows-copy-dist && webpack-dev-server --inline --history-api-fallback --content-base dist/"
   },
   "repository": {
     "type": "git",
