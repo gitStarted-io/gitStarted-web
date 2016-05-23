@@ -36,14 +36,19 @@ export default class Search extends React.Component {
     }
 
     render() {
-        return  <div className="home_container">
-            <ul>
-                {
-                    this.state.results.map((result) => {
-                        return <li key={result.getTemplateName() + "_" + result.getVersion() + (Math.random() * 10000)}><TemplateEntry entry={result} /></li>;
+        return(
+        <div className="home_container">
+            <div className = "results_container">
+                <h1 className="resultHeader" >{this.state.results.length} results for &#39;{this.state.term}&#39;</h1>
+                <ul>
+                    {
+                        this.state.results.map((result) => {
+                            return <li key={result.getTemplateName() + "_" + result.getVersion() + (Math.random() * 10000)}><TemplateEntry entry={result} /></li>;
                     })
                 }
-            </ul>
+                </ul>
+            </div>
         </div>
+        );
     }
 }

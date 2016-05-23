@@ -52,13 +52,21 @@ class Login extends React.Component {
   }
 
   render() {
-    return <div>
+    return(
+    <div className = "login_container">
+        <center>
+        <h1 className = "loginHeader">Login</h1>
           <form onSubmit={this.attemptLogin}>
-              <input name="username" value={this.state.username} onChange={this.setUsername} type="text"/>
-              <input name="password" value={this.state.password} onChange={this.setPassword} type="password"/>
-              <button type="submit">Login</button>
+              Username<br/>
+              <input className = "inputField" name="username" value={this.state.username} onChange={this.setUsername} type="text"/><br/>
+              Password<br/>
+              <input className = "inputField" name="password" value={this.state.password} onChange={this.setPassword} type="password"/>
+              <br/>
+              <button className = "loginButton" type="submit">Login</button>
           </form>
+        </center>
     </div>
+          );
   }
 }
 
