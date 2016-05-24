@@ -15,7 +15,7 @@ class ThreeHome extends React.Component {
 
     render() {
         return  <div className="three_home">
-            <h1>ThreeHome </h1>
+            <h1>What is gitStarted?</h1>
         </div>
     }
 }

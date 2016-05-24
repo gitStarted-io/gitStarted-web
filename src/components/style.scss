@@ -42,7 +42,7 @@ nav.top_nav {
 	position:fixed;
 	top:0;
 	left:0;
-	background-color:$gs-gray;
+	background-color:$gs-blue;
 	box-shadow: 0px 1px 5px 1px gray;
 	z-index:1000;
 
@@ -55,12 +55,13 @@ nav.top_nav {
 		position:absolute;
 
 		.search_icon {
-			color:$gs-font-color;
+			color:$gs-gray;
 			text-decoration:none;
 
 			&:before {
 				content: "\f002";
 				font-size: 20px;
+                
 				line-height: 40px;
 				height: 30px;
 				font-family: "FontAwesome";
@@ -69,7 +70,7 @@ nav.top_nav {
 			}
 
 			&:hover {
-				color:$gs-font-color;
+				color:$gs-gray;
 				text-decoration:none;
 				cursor:pointer;
 			}
@@ -87,10 +88,12 @@ nav.top_nav {
 			padding-left: 30px;
 			border-radius: 20px;
 			margin-left: 0px;
+            color: $gs-background;
 
 			&:focus, &:active {
 				transition:0.25s linear;
 				background-color:$gs-background;
+                color: black;
 				outline:none;
 				box-shadow:0px 2px 2px $gs-font-color;
 			}
@@ -105,7 +108,7 @@ nav.top_nav {
 		font-family:$gs-logo-font;
 
 		a {
-			color: $gs-font-color;
+			color: $gs-title-color;
 			text-decoration:none;
 			&:hover {
 				cursor:pointer;
@@ -121,7 +124,7 @@ nav.top_nav {
 		line-height: 40px;
 
 		a {
-			color: $gs-font-color;
+			color: $gs-title-color;
 			height: 40px;
 			display: block;
 			width: 60px;
@@ -211,3 +214,5 @@ nav.top_nav {
 @import "./template/style";
 @import "./user/style";
 @import "./home/style";
+@import "./search/style";
+@import "./authentication/style";
