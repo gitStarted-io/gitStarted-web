@@ -13,7 +13,7 @@ export default class Comments extends React.Component {
 
     render() {
         return <div className="comments_container">
-            <ul>
+            <ul> 
                 {
                     this.props.comments.map((comment) => {
                         return <li key={comment.getId()}><Comment comment={comment}/></li>;
