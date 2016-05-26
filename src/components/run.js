@@ -12,6 +12,7 @@ import Home from './home/home'
 import Template from './template/template'
 import Search from './search/search'
 import User from './user/user'
+import Custom from './custom/custom'
 
 function loadSettings() {
 	// console.log("Awesome");
@@ -26,6 +27,7 @@ ReactDOM.render(
 				<Route path="search/:term" component={Search} />
 				<Route path="user/:username" component={User} />
 				<Route path="login" component={Login} />
+				<Route path="custom" component={Custom} />
 			</Route>
 		</Route>
 	</Router>, 
