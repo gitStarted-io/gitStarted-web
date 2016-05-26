@@ -37,6 +37,11 @@ export default class CustomActions {
                     name:"gulp",
                     version:"1.1.3",
                     description:"The streaming build system"
+                }),
+                new Module({
+                    name:"gitStarted",
+                    version:"1000",
+                    description:"Wouldn't you like to know."
                 })
             ] 
         });

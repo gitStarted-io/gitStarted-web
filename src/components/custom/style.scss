@@ -25,9 +25,12 @@
         width:100%;
         padding:0px 20px;
         display:flex;
-        flex:3 0px;
+        flex-flow: row wrap;
+        -webkit-flex-flow: row wrap;
+        justify-content: space-around;
+        -webkit-justify-content: space-around;
         li {
-          flex:1;
+          min-width:300px;
           display:inline-block;
 
           .module_container {
