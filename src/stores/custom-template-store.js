@@ -78,6 +78,10 @@ AppDispatcher.register((payload) => {
             removeModuleForTemplate(data.module);
             CustomTemplateStore.emitChange();
             break;
+        case CustomTemplateEnums.CUSTOM_TEMPLATE_NPM_SEARCH_SUCCESS:
+            updateSearchResults(data.results);
+            CustomTemplateStore.emitChange();
+            break;
     }
 
 });

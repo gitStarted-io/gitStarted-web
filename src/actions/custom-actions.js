@@ -6,6 +6,11 @@ import AppDispatcher from "../dispatcher/dispatcher"
 import CustomEnums from "../enums/custom-enums"
 import Module from "../models/module"
 import HttpService from "../services/http-service"
+import NPMSearchTransformer from "../services/npm-generator"
+
+const ENDPOINTS = {
+    NPM_SEARCH: "http://localhost:3000/npmsearch"
+};
 
 export default class CustomActions {
     static setTemplateName(name) {
@@ -63,4 +68,21 @@ export default class CustomActions {
             module: module
         });
     }
+    
+    static searchNPM(terms) {
+        if (!terms) return;
+        let queryParams = encodeURIComponent(terms);
+        console.log(`${ENDPOINTS.NPM_SEARCH}/${queryParams}`);
+        let promise = HttpService.get(`${ENDPOINTS.NPM_SEARCH}/${queryParams}`);
+        promise.then((response) => {
+            if (!response.data) return;
+            let results = NPMSearchTransformer.transform(response.data);
+            AppDispatcher.send(CustomEnums.CUSTOM_TEMPLATE_NPM_SEARCH_SUCCESS, {
+                results: results
+            });
+        }, (error) => {
+            console.log(error);
+        })
+    }
+                
 }

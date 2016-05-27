@@ -14,13 +14,20 @@ function getState() {
     }
 }
 
+const KEYS = {
+    ENTER_KEY:13
+}
+
 export default class CustomRight extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = getState();
+        this.state.search = "";
 
         this._onChange = this._onChange.bind(this);
+        this.moduleSearch = this.moduleSearch.bind(this);
+        this.moduleSearchPress = this.moduleSearchPress.bind(this);
         this.render = this.render.bind(this);
     }
 
@@ -52,12 +59,27 @@ export default class CustomRight extends React.Component {
         CustomActions.selectedModule(module);
     }
 
+    moduleSearch(e) {
+        e.preventDefault();
+        this.setState({search:e.target.value});
+    }
+
+    moduleSearchPress(e) {
+        if (e.which === KEYS.ENTER_KEY) {
+            e.preventDefault();
+            CustomActions.searchNPM(this.state.search);
+        }
+    }
+
     render() {
         var self = this;
         return <div className="right">
                     <h1>Right</h1>
                     <input value={this.state.template.getTemplateName()} onChange={this.templateNameChange} />
                     <textarea onChange={this.descriptionChange} />
+
+                    <p>Module Search</p>
+                    <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} />
                     <div  className="modules">
                         <ul className="module_list">
                             {
