@@ -21,9 +21,14 @@ export default class CustomModule extends React.Component {
     }
 
     render() {
+        if (this.props.isSelected) {
+            return <a onClick={this.addModule} className="module_container"><p className="module_name">{this.props.module.getModuleName()}</p></a>;
+        }
         return <a onClick={this.addModule} className="module_container">
-
-                <p>{this.props.module.getModuleName()}</p>
+            <div className="info_container">
+                <p className="module_name">{this.props.module.getModuleName()}</p>
+                <p className="module_description">{this.props.module.getDescription()}</p>
+            </div>
         </a>
     }
 }

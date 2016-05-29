@@ -27,7 +27,6 @@ class CustomTemplateStoreClass extends BaseStore {
 }
 
 function updateTemplateName(name) {
-    if (!name) return;
     _store.template.setName(name);
 }
 

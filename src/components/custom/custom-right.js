@@ -74,12 +74,15 @@ export default class CustomRight extends React.Component {
     render() {
         var self = this;
         return <div className="right">
-                    <h1>Right</h1>
-                    <input value={this.state.template.getTemplateName()} onChange={this.templateNameChange} />
-                    <textarea onChange={this.descriptionChange} />
-
-                    <p>Module Search</p>
-                    <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} />
+                    <div className="template_title">
+                        <input value={this.state.template.getTemplateName()} onChange={this.templateNameChange} />
+                    </div>
+                    <div className="template_description">
+                        <textarea value={this.state.template.getDescription()} onChange={this.descriptionChange} />
+                    </div>
+                    <div className="module_search">
+                        <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} placeholder="Module Search"/>
+                    </div>
                     <div  className="modules">
                         <ul className="module_list">
                             {

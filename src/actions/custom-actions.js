@@ -14,7 +14,6 @@ const ENDPOINTS = {
 
 export default class CustomActions {
     static setTemplateName(name) {
-        if (!name) return;
 
         AppDispatcher.send(CustomEnums.CUSTOM_TEMPLATE_NAME_CHANGED, {
             templateName: name
