@@ -13,6 +13,7 @@ export default class CustomTemplate extends BaseModel {
         this._description = data.description;
         this._contributors = data.contributors;
         this._modules = data.modules;
+        this._tags = data.tags;
 
     }
 
@@ -30,6 +31,10 @@ export default class CustomTemplate extends BaseModel {
 
     getModules() {
         return this._modules;
+    }
+
+    getTags() {
+        return this._tags;
     }
 
     setName(name) {
@@ -58,12 +63,17 @@ export default class CustomTemplate extends BaseModel {
         }
     }
 
+    addTag(newTag) {
+        this._tags.push(newTag);
+    }
+
     static getDefaultTemplate() {
         return new this({
             templateName:"Template Name",
             description:"Description...",
             contributors:[],
-            modules: []
+            modules: [],
+            tags: []
         });
     }
 }

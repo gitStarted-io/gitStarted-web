@@ -29,6 +29,7 @@ export default class CustomRight extends React.Component {
         this.moduleSearch = this.moduleSearch.bind(this);
         this.moduleSearchPress = this.moduleSearchPress.bind(this);
         this.render = this.render.bind(this);
+        this.addTag = this.addTag.bind(this);
     }
 
     componentDidMount() {
@@ -55,6 +56,13 @@ export default class CustomRight extends React.Component {
         CustomActions.setDescription(e.target.value);
     }
 
+    addTag(e) {
+        if(e.which === KEYS.ENTER_KEY) {
+            e.preventDefault();
+            CustomActions.setNewTag(e.target.value);
+        }
+    }
+
     selectedModule(module) {
         CustomActions.selectedModule(module);
     }
@@ -79,6 +87,9 @@ export default class CustomRight extends React.Component {
                     </div>
                     <div className="template_description">
                         <textarea value={this.state.template.getDescription()} onChange={this.descriptionChange} />
+                    </div>
+                    <div className="module_search">
+                        <input type="text" placeholder="Add a Tag" onKeyPress={this.addTag} /> 
                     </div>
                     <div className="module_search">
                         <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} placeholder="Module Search"/>

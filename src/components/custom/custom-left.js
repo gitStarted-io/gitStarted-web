@@ -44,6 +44,13 @@ export default class CustomLeft extends React.Component {
                         })
                     }
                 </ul>
+                <ul> 
+                    {
+                        this.state.template.getTags().map((tag)=> {
+                            return <li key={Math.random()*100}>{tag}</li>
+                        })
+                    }
+                </ul>
             </div>
     }
 }

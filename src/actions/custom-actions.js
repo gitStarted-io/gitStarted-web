@@ -67,6 +67,12 @@ export default class CustomActions {
             module: module
         });
     }
+
+    static setNewTag(tag) {
+        AppDispatcher.send(CustomEnums.CUSTOM_TEMPLATE_ADD_TAG, {
+            tags: tag
+        })
+    }
     
     static searchNPM(terms) {
         if (!terms) return;
