@@ -50,6 +50,10 @@ function removeModuleForTemplate(module) {
     _store.template.removeModule(module);
 }
 
+function addTagToTemplate(tag) {
+    _store.template.addTag(tag);
+}
+
 const CustomTemplateStore = new CustomTemplateStoreClass();
 
 AppDispatcher.register((payload) => {
@@ -81,6 +85,11 @@ AppDispatcher.register((payload) => {
             updateSearchResults(data.results);
             CustomTemplateStore.emitChange();
             break;
+        case CustomTemplateEnums.CUSTOM_TEMPLATE_ADD_TAG;
+            addTagToTemplate(data.tags);
+            CustomTemplateStore.emitChange();
+            break;
+
     }
 
 });
