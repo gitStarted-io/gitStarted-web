@@ -1,29 +1,4 @@
-
-.loginHeader{
-    padding-top: 20vh;
-    padding-bottom: 20px;
-    font-family: $gs-logo-font;
-    font-size: 30pt;
-}
-
-.inputField{
-    border-style: groove;
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 2px;
-    margin-bottom: 20px;
-}
-
-.loginButton{
-    border: none;
-    border-radius: 5px;
-    padding: 10px 30px;
-    color: whitesmoke;
-    font-size: 16px;
-    background-color: $gs-green;
-}
-
-login_container{
+.login_container{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -32,6 +7,41 @@ login_container{
     left: 0;
     right: 0;
     margin: auto;
-    background-color: $gs-blue;
+    text-align:center;
+
+    .loginHeader{
+        padding-top: 20vh;
+        padding-bottom: 20px;
+        font-family: $gs-logo-font;
+        font-size: 30pt;
+    }
+
+    .inputField{
+        border-style: groove;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 2px;
+        margin-bottom: 20px;
+    }
+
+    .loginButton{
+        border: none;
+        border-radius: 5px;
+        padding: 10px 30px;
+        color: whitesmoke;
+        font-size: 16px;
+        background-color: $gs-green;
+    }
+
+    .registerButton {
+        width: auto;
+        margin: auto;
+        margin-top: 10px;
+        display: inline-block;
+
+        &:hover {
+            cursor:pointer;
+        }
+    }
 }
 

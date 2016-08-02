@@ -140,6 +140,19 @@ nav.top_nav {
 			height: 40px;
 			text-align: right;
 			position: relative;
+			color:white;
+
+			.create_template {
+				line-height:40px;
+				color:white;
+				display:inline-block;
+				padding:0px 10px;
+
+				&:hover {
+					background-color:cornflowerblue;
+					cursor:pointer;
+				}
+			}
 
 			p {
 				margin: 0px;
@@ -216,3 +229,4 @@ nav.top_nav {
 @import "./home/style";
 @import "./search/style";
 @import "./authentication/style";
+@import "./create/style";

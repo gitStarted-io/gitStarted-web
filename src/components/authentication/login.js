@@ -42,6 +42,10 @@ class Login extends React.Component {
   setPassword(e) {
       this.setState({password:e.target.value});
   }
+
+    goToRegister() {
+        console.log("Go to register.");
+    }
   
   _onChange() {
      this.setState(getState(), () => {
@@ -54,17 +58,16 @@ class Login extends React.Component {
   render() {
     return(
     <div className = "login_container">
-        <center>
         <h1 className = "loginHeader">Login</h1>
-          <form onSubmit={this.attemptLogin}>
-              Username<br/>
-              <input className = "inputField" name="username" value={this.state.username} onChange={this.setUsername} type="text"/><br/>
-              Password<br/>
-              <input className = "inputField" name="password" value={this.state.password} onChange={this.setPassword} type="password"/>
-              <br/>
-              <button className = "loginButton" type="submit">Login</button>
-          </form>
-        </center>
+      <form onSubmit={this.attemptLogin}>
+          Username<br/>
+          <input className = "inputField" name="username" value={this.state.username} onChange={this.setUsername} type="text"/><br/>
+          Password<br/>
+          <input className = "inputField" name="password" value={this.state.password} onChange={this.setPassword} type="password"/>
+          <br/>
+          <button className = "loginButton" type="submit">Login</button>
+        </form>
+        <div onClick={this.goToRegister} className="registerButton">Register</div>
     </div>
           );
   }

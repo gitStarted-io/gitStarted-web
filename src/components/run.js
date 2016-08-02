@@ -12,6 +12,7 @@ import Home from './home/home'
 import Template from './template/template'
 import Search from './search/search'
 import User from './user/user'
+import Create from './create/create'
 
 function loadSettings() {
 	// console.log("Awesome");
@@ -23,6 +24,7 @@ ReactDOM.render(
 			<Route path="" component={Dashboard}>
 				<IndexRoute component={Home}/>
 				<Route path="template/:templateName" component={Template}/>
+				<Route path="create" component={Create}/>
 				<Route path="search/:term" component={Search} />
 				<Route path="user/:username" component={User} />
 				<Route path="login" component={Login} />

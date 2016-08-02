@@ -1,0 +1,26 @@
+
+.create_container {
+  width:80%;
+  margin:auto;
+
+  .top {
+    display:block;
+    height:100px;
+  }
+
+  .github {
+
+    input {
+
+    }
+
+    .githubSubmit {
+      background-color:green;
+
+      &:hover {
+        background-color:lightgreen;
+        cursor:pointer;
+      }
+    }
+  }
+}

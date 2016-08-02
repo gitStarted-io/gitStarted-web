@@ -25,12 +25,18 @@ export default class UserToolbarButton extends React.Component {
         this.setState({show:!this.state.show});
     }
 
-    goToMyProfile() {
-
+    goToMyProfile(e) {
+        e.preventDefault();
+        browserHistory.push('/profile');
     }
 
-    logout() {
+    logout(e) {
+        e.preventDefault();
+        // browserHistory.push('');
+    }
 
+    createTemplate() {
+        browserHistory.push('/create');
     }
 
     render() {
@@ -40,6 +46,7 @@ export default class UserToolbarButton extends React.Component {
         var dropdown = "dropdown " + (this.state.show ? " visible" : "");
 
         return <div onClick={this.toggleVisibility} className="user_button">
+                    <div className="create_template" onClick={this.createTemplate}>Create</div>
                     <p>{this.props.user.getUsername()}</p>
                     <img src={this.props.user.getThumbnail()}/>
                     <div className={dropdown}>
