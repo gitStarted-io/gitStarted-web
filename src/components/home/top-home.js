@@ -15,9 +15,8 @@ class TopHome extends React.Component {
 
     render() {
         return  <div className="top_home">
-            <h1>Top Home</h1>
-            
-        </div>
+                    <h1>Top Home</h1>
+                </div>
     }
 }
 

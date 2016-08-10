@@ -5,6 +5,8 @@
 import React from "react";
 import CustomActions from "../../actions/custom-actions";
 import CustomStore from "../../stores/custom-template-store"
+import Frameworks from "../../constants/frameworks";
+import BuildManagers from "../../constants/build-managers";
 
 
 function getState() {
@@ -16,7 +18,7 @@ function getState() {
 
 const KEYS = {
     ENTER_KEY:13
-}
+};
 
 export default class CustomRight extends React.Component {
     constructor(props) {
@@ -73,6 +75,18 @@ export default class CustomRight extends React.Component {
         }
     }
 
+    isPrivateRepo(e) {
+        CustomActions.setIsPrivate(e.target.checked);
+    }
+
+    includesFramework(e) {
+        CustomActions.includesFramework(e.target.checked, e.target.id);
+    }
+
+    includeBuildManager(e) {
+        CustomActions.includesBuildManager(e.target.checked, e.target.id);
+    }
+
     moduleSearch(e) {
         e.preventDefault();
         this.setState({search:e.target.value});
@@ -96,6 +110,24 @@ export default class CustomRight extends React.Component {
                     </div>
                     <div className="template_collaborators">
                         <input value={this.state.collaborator} onChange={this.collaboratorsChange} onKeyUp={this.collaboratorsAdd} />
+                    </div>
+                    <div className="template_is_public">
+                        <span>Private Repo:</span>
+                        <input value={this.state.template.isPrivate} type="checkbox" onChange={this.isPrivateRepo} />
+                    </div>
+                    <div className="template_includes_framework">
+                        <span>jQuery:</span>
+                        <input id={Frameworks.JQUERY} value={this.state.template.frameworks[Frameworks.JQUERY]} type="checkbox" onChange={this.includesFramework} />
+                        <span>Bootstrap:</span>
+                        <input id={Frameworks.BOOTSTRAP} value={this.state.template.frameworks[Frameworks.BOOTSTRAP]} type="checkbox" onChange={this.includesFramework} />
+                    </div>
+                    <div className="template_build_manager">
+                        <span>Gulp:</span>
+                        <input id={BuildManagers.GULP} value={this.state.template.frameworks[BuildManagers.GULP]} type="checkbox" onChange={this.includeBuildManager} />
+                        <span>Grunt:</span>
+                        <input id={BuildManagers.GRUNT} value={this.state.template.frameworks[BuildManagers.GRUNT]} type="checkbox" onChange={this.includeBuildManager} />
+                        <span>npm run:</span>
+                        <input id={BuildManagers.NPM_RUN} value={this.state.template.frameworks[BuildManagers.NPM_RUN]} type="checkbox" onChange={this.includeBuildManager} />
                     </div>
                     <div className="module_search">
                         <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} placeholder="Module Search"/>

@@ -76,6 +76,25 @@ export default class CustomActions {
         });
     }
 
+    static setIsPrivate(value) {
+        AppDispatcher.send(CustomEnums.CUSTOM_TEMPLATE_IS_PRIVATE, {
+            isPrivate: value
+        });
+    }
+
+    static includesFramework(value, framework) {
+        AppDispatcher.send(CustomEnums.CUSTOM_FRAMEWORK_UPDATE, {
+            includes: value,
+            framework: framework
+        });
+    }
+
+    static includesBuildManager(value, framework) {
+        AppDispatcher.send(CustomEnums.CUSTOM_BUILD_MANAGER_UPDATE, {
+            includes: value,
+            framework: framework
+        });
+    }
     
     static searchNPM(terms) {
         if (!terms) return;

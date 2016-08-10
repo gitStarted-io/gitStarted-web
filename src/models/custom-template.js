@@ -14,6 +14,9 @@ export default class CustomTemplate extends BaseModel {
         this._contributors = data.contributors;
         this._modules = data.modules;
         this._collaborators = data.collaborators;
+        this._isPrivate = data.isPrivate;
+        this._frameworks = data.frameworks;
+        this._buildManagers = data.buildManager;
 
     }
 
@@ -39,6 +42,18 @@ export default class CustomTemplate extends BaseModel {
         return this._collaborators;
     }
 
+    get isPrivate() {
+        return this._isPrivate;
+    }
+
+    get frameworks() {
+        return this._frameworks;
+    }
+
+    get buildManagers() {
+        return this._buildManagers;
+    }
+
     // Setters
 
     set name(name) {
@@ -47,6 +62,10 @@ export default class CustomTemplate extends BaseModel {
 
     set description(description) {
         this._description = description;
+    }
+
+    set isPrivate(value) {
+        this._isPrivate = value;
     }
 
     // Functions
@@ -79,15 +98,26 @@ export default class CustomTemplate extends BaseModel {
         return true;
     }
 
+    updateFramework(value, framework) {
+        this._frameworks[framework] = value;
+    }
+
+    updateBuildManager(value, buildmanager) {
+        this._buildManagers[buildmanager] = value;
+    }
+
     // Static Functions
 
     static getDefaultTemplate() {
         return new this({
-            templateName:"Template Name",
-            description:"Description...",
+            templateName:"Repo Name",
+            description:"Read Me...",
             contributors:[],
             modules: [],
-            collaborators: []
+            collaborators: [],
+            isPrivate: false,
+            frameworks:{},
+            buildManager:{}
         });
     }
 }

@@ -45,6 +45,35 @@ export default class CustomLeft extends React.Component {
                         })
                     }
                 </ul>
+                <p>Private Repo: {this.state.template.isPrivate ? "True" : "False"}</p>
+                <ul>
+                    {
+                        (() => {
+                            let keys = Object.keys(this.state.template.frameworks);
+                            let valid = [];
+                            for (var i = 0; i < keys.length; i++) {
+                                if (this.state.template.frameworks[keys[i]]) {
+                                    valid.push(<li key={`${keys[i]}_framework`}>{keys[i]}</li>);
+                                }
+                            }
+                            return valid;
+                        })()
+                    }
+                </ul>
+                <ul>
+                    {
+                        (() => {
+                            let keys = Object.keys(this.state.template.buildManagers);
+                            let valid = [];
+                            for (var i = 0; i < keys.length; i++) {
+                                if (this.state.template.buildManagers[keys[i]]) {
+                                    valid.push(<li key={`${keys[i]}_framework`}>{keys[i]}</li>);
+                                }
+                            }
+                            return valid;
+                        })()
+                    }
+                </ul>
                 <ul>
                     {
                         this.state.template.modules.map((module) => {
@@ -52,6 +81,7 @@ export default class CustomLeft extends React.Component {
                         })
                     }
                 </ul>
+
             </div>
     }
 }

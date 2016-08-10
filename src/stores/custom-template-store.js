@@ -27,12 +27,12 @@ class CustomTemplateStoreClass extends BaseStore {
 }
 
 function updateTemplateName(name) {
-    _store.template.setName(name);
+    _store.template.name = name;
 }
 
 function updateDescription(description) {
     if (!description) return;
-    _store.template.setDescription(description);
+    _store.template.description = description;
 }
 
 function updateSearchResults(results) {
@@ -53,6 +53,18 @@ function removeModuleForTemplate(module) {
 function addCollaborator(user) {
     if (!user) return false;
     return _store.template.addCollaborator(user);
+}
+
+function setIsPrivate(value) {
+    _store.template.isPrivate = value;
+}
+
+function updateFramework(value, framework) {
+    _store.template.updateFramework(value, framework);
+}
+
+function updateBuildManager(value, framework) {
+    _store.template.updateBuildManager(value, framework);
 }
 
 const CustomTemplateStore = new CustomTemplateStoreClass();
@@ -90,6 +102,18 @@ AppDispatcher.register((payload) => {
             if (addCollaborator(data.user)) {
                 CustomTemplateStore.emitChange();
             }
+            break;
+        case CustomTemplateEnums.CUSTOM_TEMPLATE_IS_PRIVATE:
+            setIsPrivate(data.isPrivate);
+            CustomTemplateStore.emitChange();
+            break;
+        case CustomTemplateEnums.CUSTOM_FRAMEWORK_UPDATE:
+            updateFramework(data.includes, data.framework);
+            CustomTemplateStore.emitChange();
+            break;
+        case CustomTemplateEnums.CUSTOM_BUILD_MANAGER_UPDATE:
+            updateBuildManager(data.includes, data.framework);
+            CustomTemplateStore.emitChange();
             break;
     }
 
