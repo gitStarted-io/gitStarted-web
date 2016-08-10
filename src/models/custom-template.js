@@ -4,6 +4,8 @@
 
 import BaseModel from "./base-model";
 import Module from "./module"
+import FrameworkConstants from "../constants/frameworks";
+import BuildManagerConstants from "../constants/build-managers";
 
 export default class CustomTemplate extends BaseModel {
     constructor(data) {
@@ -50,8 +52,16 @@ export default class CustomTemplate extends BaseModel {
         return this._frameworks;
     }
 
+    get frameworkKeys() {
+        return Object.keys(this._frameworks);
+    }
+
     get buildManagers() {
         return this._buildManagers;
+    }
+
+    get buildManagerKeys() {
+        return Object.keys(this._buildManagers);
     }
 
     // Setters
@@ -109,6 +119,14 @@ export default class CustomTemplate extends BaseModel {
     // Static Functions
 
     static getDefaultTemplate() {
+        let frameworks = {};
+        let buildmanagers = {};
+        Object.keys(FrameworkConstants).forEach((framework) => {
+            frameworks[framework] = false;
+        });
+        Object.keys(BuildManagerConstants).forEach((buildManager) => {
+            buildmanagers[buildManager] = false;
+        });
         return new this({
             templateName:"Repo Name",
             description:"Read Me...",
@@ -116,8 +134,8 @@ export default class CustomTemplate extends BaseModel {
             modules: [],
             collaborators: [],
             isPrivate: false,
-            frameworks:{},
-            buildManager:{}
+            frameworks:frameworks,
+            buildManager:buildmanagers
         });
     }
 }

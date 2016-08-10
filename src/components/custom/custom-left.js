@@ -5,6 +5,8 @@
 import React from "react";
 import CustomTemplate from "../../models/custom-template";
 import CustomStore from "../../stores/custom-template-store";
+import BuildManagerConstants from "../../constants/build-managers";
+import FrameworkConstants from "../../constants/frameworks";
 
 function getState() {
     return {
@@ -49,11 +51,11 @@ export default class CustomLeft extends React.Component {
                 <ul>
                     {
                         (() => {
-                            let keys = Object.keys(this.state.template.frameworks);
+                            let keys = this.state.template.frameworkKeys;
                             let valid = [];
                             for (var i = 0; i < keys.length; i++) {
                                 if (this.state.template.frameworks[keys[i]]) {
-                                    valid.push(<li key={`${keys[i]}_framework`}>{keys[i]}</li>);
+                                    valid.push(<li key={`${keys[i]}_framework`}>{FrameworkConstants[keys[i]]}</li>);
                                 }
                             }
                             return valid;
@@ -63,11 +65,11 @@ export default class CustomLeft extends React.Component {
                 <ul>
                     {
                         (() => {
-                            let keys = Object.keys(this.state.template.buildManagers);
+                            let keys = this.state.template.buildManagerKeys;
                             let valid = [];
                             for (var i = 0; i < keys.length; i++) {
                                 if (this.state.template.buildManagers[keys[i]]) {
-                                    valid.push(<li key={`${keys[i]}_framework`}>{keys[i]}</li>);
+                                    valid.push(<li key={`${keys[i]}_framework`}>{BuildManagerConstants[keys[i]]}</li>);
                                 }
                             }
                             return valid;

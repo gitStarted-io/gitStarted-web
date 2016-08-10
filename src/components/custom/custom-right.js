@@ -5,8 +5,8 @@
 import React from "react";
 import CustomActions from "../../actions/custom-actions";
 import CustomStore from "../../stores/custom-template-store"
-import Frameworks from "../../constants/frameworks";
-import BuildManagers from "../../constants/build-managers";
+import FrameworkConstants from "../../constants/frameworks";
+import BuildManagerConstants from "../../constants/build-managers";
 
 
 function getState() {
@@ -116,18 +116,30 @@ export default class CustomRight extends React.Component {
                         <input value={this.state.template.isPrivate} type="checkbox" onChange={this.isPrivateRepo} />
                     </div>
                     <div className="template_includes_framework">
-                        <span>jQuery:</span>
-                        <input id={Frameworks.JQUERY} value={this.state.template.frameworks[Frameworks.JQUERY]} type="checkbox" onChange={this.includesFramework} />
-                        <span>Bootstrap:</span>
-                        <input id={Frameworks.BOOTSTRAP} value={this.state.template.frameworks[Frameworks.BOOTSTRAP]} type="checkbox" onChange={this.includesFramework} />
+                        {
+                            this.state.template.frameworkKeys.map((framework) => {
+                                return <div key={`custom-framework-${framework}`}>
+                                    <span>{FrameworkConstants[framework]}</span>
+                                    <input id={framework}
+                                           value={this.state.template.frameworks[framework]}
+                                           type="checkbox"
+                                           onChange={this.includesFramework} />
+                                </div>
+                            })
+                        }
                     </div>
                     <div className="template_build_manager">
-                        <span>Gulp:</span>
-                        <input id={BuildManagers.GULP} value={this.state.template.frameworks[BuildManagers.GULP]} type="checkbox" onChange={this.includeBuildManager} />
-                        <span>Grunt:</span>
-                        <input id={BuildManagers.GRUNT} value={this.state.template.frameworks[BuildManagers.GRUNT]} type="checkbox" onChange={this.includeBuildManager} />
-                        <span>npm run:</span>
-                        <input id={BuildManagers.NPM_RUN} value={this.state.template.frameworks[BuildManagers.NPM_RUN]} type="checkbox" onChange={this.includeBuildManager} />
+                        {
+                            this.state.template.buildManagerKeys.map((buildManager) => {
+                                return <div key={`custom-bm-${buildManager}`}>
+                                            <span>{BuildManagerConstants[buildManager]}</span>
+                                            <input id={buildManager}
+                                                   value={this.state.template.buildManagers[buildManager]}
+                                                   type="checkbox"
+                                                   onChange={this.includeBuildManager} />
+                                        </div>
+                            })
+                        }
                     </div>
                     <div className="module_search">
                         <input value={this.state.search} type="text" onChange={this.moduleSearch} onKeyPress={this.moduleSearchPress} placeholder="Module Search"/>

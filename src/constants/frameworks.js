@@ -1,4 +1,4 @@
 export default {
-    JQUERY:'jquery',
-    BOOTSTRAP:'bootstrap'
+    JQUERY:'jQuery',
+    BOOTSTRAP:'Bootstrap'
 }
