@@ -20,6 +20,7 @@
     display:flex;
     align-items:center;
     flex-direction:column;
+    overflow-y:scroll;
 
     .template_title {
       width:100%;

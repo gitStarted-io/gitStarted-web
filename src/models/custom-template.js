@@ -89,9 +89,9 @@ export default class CustomTemplate extends BaseModel {
         this._modules.push(newModule);
     }
 
-    removeModule(newModule) {
+    removeModule(module) {
         for (var i = 0; i < this._modules.length; i++) {
-            if (this._modules[i].getModuleName() === newModule.getModuleName()) {
+            if (this._modules[i].getModuleName() === module.getModuleName()) {
                 this._modules.splice(i, 1);
                 break;
             }

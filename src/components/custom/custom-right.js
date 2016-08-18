@@ -7,6 +7,7 @@ import CustomActions from "../../actions/custom-actions";
 import CustomStore from "../../stores/custom-template-store"
 import FrameworkConstants from "../../constants/frameworks";
 import BuildManagerConstants from "../../constants/build-managers";
+import InputSelection from "../common/input-selection";
 
 
 function getState() {
@@ -118,26 +119,24 @@ export default class CustomRight extends React.Component {
                     <div className="template_includes_framework">
                         {
                             this.state.template.frameworkKeys.map((framework) => {
-                                return <div key={`custom-framework-${framework}`}>
-                                    <span>{FrameworkConstants[framework]}</span>
-                                    <input id={framework}
-                                           value={this.state.template.frameworks[framework]}
-                                           type="checkbox"
-                                           onChange={this.includesFramework} />
-                                </div>
+                                return <InputSelection  id={`framework-${framework}-add`}
+                                                        fn={this.includesFramework}
+                                                        text={FrameworkConstants[framework]}
+                                                        class={framework}
+                                                        list={this.state.template.frameworks}
+                                                        selected={this.state.template.frameworks[framework]}/>;
                             })
                         }
                     </div>
                     <div className="template_build_manager">
                         {
                             this.state.template.buildManagerKeys.map((buildManager) => {
-                                return <div key={`custom-bm-${buildManager}`}>
-                                            <span>{BuildManagerConstants[buildManager]}</span>
-                                            <input id={buildManager}
-                                                   value={this.state.template.buildManagers[buildManager]}
-                                                   type="checkbox"
-                                                   onChange={this.includeBuildManager} />
-                                        </div>
+                                return <InputSelection  id={`buildManager-${buildManager}-add`}
+                                                        fn={this.includeBuildManager}
+                                                        text={BuildManagerConstants[buildManager]}
+                                                        class={buildManager}
+                                                        list={this.state.template.buildManagers}
+                                                        selected={this.state.template.buildManagers[buildManager]}/>
                             })
                         }
                     </div>

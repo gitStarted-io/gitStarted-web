@@ -7,6 +7,8 @@ import CustomTemplate from "../../models/custom-template";
 import CustomStore from "../../stores/custom-template-store";
 import BuildManagerConstants from "../../constants/build-managers";
 import FrameworkConstants from "../../constants/frameworks";
+import CustomActions from "../../actions/custom-actions";
+import CustomLeftRemovableValue from "../common/custom-left-removable-value";
 
 function getState() {
     return {
@@ -35,6 +37,14 @@ export default class CustomLeft extends React.Component {
         this.setState(getState());
     }
 
+    removeFramework(key) {
+        CustomActions.includesFramework(false, key);
+    }
+
+    removeBuildManager(key) {
+        CustomActions.includesBuildManager(false, key);
+    }
+
     render() {
         return <div className="left">
                 <h1>{this.state.template.templateName}</h1>
@@ -55,7 +65,11 @@ export default class CustomLeft extends React.Component {
                             let valid = [];
                             for (var i = 0; i < keys.length; i++) {
                                 if (this.state.template.frameworks[keys[i]]) {
-                                    valid.push(<li key={`${keys[i]}_framework`}>{FrameworkConstants[keys[i]]}</li>);
+                                    valid.push(<CustomLeftRemovableValue
+                                        text={FrameworkConstants[keys[i]]}
+                                        key={keys[i]}
+                                        value={keys[i]}
+                                        fn={this.removeFramework} />);
                                 }
                             }
                             return valid;
@@ -69,7 +83,12 @@ export default class CustomLeft extends React.Component {
                             let valid = [];
                             for (var i = 0; i < keys.length; i++) {
                                 if (this.state.template.buildManagers[keys[i]]) {
-                                    valid.push(<li key={`${keys[i]}_framework`}>{BuildManagerConstants[keys[i]]}</li>);
+                                    valid.push(<CustomLeftRemovableValue
+                                                    text={BuildManagerConstants[keys[i]]}
+                                                    key={keys[i]}
+                                                    value={keys[i]}
+                                                    fn={this.removeBuildManager} />);
+
                                 }
                             }
                             return valid;
