@@ -9,6 +9,7 @@ import BuildManagerConstants from "../../constants/build-managers";
 import FrameworkConstants from "../../constants/frameworks";
 import CustomActions from "../../actions/custom-actions";
 import CustomLeftRemovableValue from "../common/custom-left-removable-value";
+import CustomDropdown from "../common/toggle-dropdown";
 
 function getState() {
     return {
@@ -58,50 +59,57 @@ export default class CustomLeft extends React.Component {
                     }
                 </ul>
                 <p>Private Repo: {this.state.template.isPrivate ? "True" : "False"}</p>
-                <ul>
-                    {
-                        (() => {
-                            let keys = this.state.template.frameworkKeys;
-                            let valid = [];
-                            for (var i = 0; i < keys.length; i++) {
-                                if (this.state.template.frameworks[keys[i]]) {
-                                    valid.push(<CustomLeftRemovableValue
-                                        text={FrameworkConstants[keys[i]]}
-                                        key={keys[i]}
-                                        value={keys[i]}
-                                        fn={this.removeFramework} />);
+                <CustomDropdown title="Frameworks">
+                    <ul>
+                        {
+                            (() => {
+                                let keys = this.state.template.frameworkKeys;
+                                let valid = [];
+                                for (var i = 0; i < keys.length; i++) {
+                                    if (this.state.template.frameworks[keys[i]]) {
+                                        valid.push(<CustomLeftRemovableValue
+                                            text={FrameworkConstants[keys[i]]}
+                                            key={keys[i]}
+                                            value={keys[i]}
+                                            fn={this.removeFramework} />);
+                                    }
                                 }
-                            }
-                            return valid;
-                        })()
-                    }
-                </ul>
-                <ul>
-                    {
-                        (() => {
-                            let keys = this.state.template.buildManagerKeys;
-                            let valid = [];
-                            for (var i = 0; i < keys.length; i++) {
-                                if (this.state.template.buildManagers[keys[i]]) {
-                                    valid.push(<CustomLeftRemovableValue
-                                                    text={BuildManagerConstants[keys[i]]}
-                                                    key={keys[i]}
-                                                    value={keys[i]}
-                                                    fn={this.removeBuildManager} />);
+                                return valid;
+                            })()
+                        }
+                    </ul>
+                </CustomDropdown>
 
+                <CustomDropdown title="Build Managers">
+                    <ul>
+                        {
+                            (() => {
+                                let keys = this.state.template.buildManagerKeys;
+                                let valid = [];
+                                for (var i = 0; i < keys.length; i++) {
+                                    if (this.state.template.buildManagers[keys[i]]) {
+                                        valid.push(<CustomLeftRemovableValue
+                                                        text={BuildManagerConstants[keys[i]]}
+                                                        key={keys[i]}
+                                                        value={keys[i]}
+                                                        fn={this.removeBuildManager} />);
+
+                                    }
                                 }
-                            }
-                            return valid;
-                        })()
-                    }
-                </ul>
-                <ul>
-                    {
-                        this.state.template.modules.map((module) => {
-                            return <li key={module.getVersion() + "_" + module.getModuleName()}>{module.getReactComponent({isSelected:true})}</li>;
-                        })
-                    }
-                </ul>
+                                return valid;
+                            })()
+                        }
+                    </ul>
+                </CustomDropdown>
+                <CustomDropdown title="Node Modules">
+                    <ul>
+                        {
+                            this.state.template.modules.map((module) => {
+                                return <li key={module.getVersion() + "_" + module.getModuleName()}>{module.getReactComponent({isSelected:true})}</li>;
+                            })
+                        }
+                    </ul>
+                </CustomDropdown>
 
             </div>
     }
